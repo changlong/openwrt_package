@@ -1,0 +1,37 @@
+diff --git a/libbb/printable_string.c b/libbb/printable_string.c
+index 0bad85d..a316f60 100644
+--- a/libbb/printable_string.c
++++ b/libbb/printable_string.c
+@@ -31,10 +31,8 @@ const char* FAST_FUNC printable_string(uni_stat_t *stats, const char *str)
+ 		}
+ 		if (c < ' ')
+ 			break;
+-/*
+ 		if (c >= 0x7f)
+ 			break;
+-*/
+ 		s++;
+ 	}
+ 
+diff --git a/libbb/unicode.c b/libbb/unicode.c
+index 4f3f434..fc4e525 100644
+--- a/libbb/unicode.c
++++ b/libbb/unicode.c
+@@ -1019,7 +1019,7 @@ static char* FAST_FUNC unicode_conv_to_printable2(uni_stat_t *stats, const char
+ 					while ((int)--width >= 0);
+ 					break;
+ 				}
+-				*d++ = (c >= ' '/* && c < 0x7f */) ? c : '?';
++				*d++ = (c >= ' ' /* && c < 0x7f */ ) ? c : '?';
+ 				src++;
+ 			}
+ 			*d = '\0';
+@@ -1027,7 +1027,7 @@ static char* FAST_FUNC unicode_conv_to_printable2(uni_stat_t *stats, const char
+ 			d = dst = xstrndup(src, width);
+ 			while (*d) {
+ 				unsigned char c = *d;
+-				if (c < ' '/* || c >= 0x7f */)
++				if (c < ' ' /* || c >= 0x7f */ )
+ 					*d = '?';
+ 				d++;
+ 			}
